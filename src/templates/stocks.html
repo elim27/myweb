@@ -1,0 +1,151 @@
+{% extends "home.html" %}
+
+{% block title %}ethan lim &#8211 stock locks{% endblock title %}
+
+{% load static %}
+{% block styles %}  
+    {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesStocks.css' %}" />
+    <div id="title" class="wrapper">
+        <div class="title">
+            <h3>The Big Three</h3>
+            <h4>Ethan's <span id="month" style="font-style: italic;"></span> Stock Picks</h4>
+        </div>
+    </div>
+        <!-- Wrapper for jquery -->
+       
+            <!-- Holds three cards-->
+            <div class="grid">
+            
+                <!-- Top stock -->
+                <div id="stock1" class="wrapper">
+                    <div class="container">
+                        <!-- Name and % change-->
+                        <div class="info">
+                            <h1>{{ picks.top.name }}</h1>
+                            <!-- if change is positive (gain is true), text color green, else text color red -->
+                            {% if picks.top.gain %}
+                                <h2 class="gain">+{{ picks.top.change }}</h2>
+                            {% else %}
+                                <h2 class="loss">{{ picks.top.change }}</h2>
+                            {% endif %}
+                        </div>
+                        <!-- price -->
+                        <div class="price">
+                            {% if picks.top.gain %}
+                                <p1 class="gain">{{ picks.top.price }}</p1>
+                            {% else %}
+                                <p1> class="loss"{{ picks.top.price }}</p1>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Second stock -->
+                <div id="stock2" class="wrapper">
+                    <div class="container">
+                        <div class="info">
+                            <h1>{{ picks.second.name }}</h1>
+                            {% if picks.second.gain %}
+                                <h2 class="gain">+{{ picks.second.change }}</h2>
+                            {% else %}
+                                <h2 class="loss">{{ picks.second.change }}</h2>
+                            {% endif %}
+                        </div>
+                        <div class="price">
+                            {% if picks.second.gain %}
+                                <p1 class="gain">{{ picks.second.price }}</p1>
+                            {% else %}
+                                <p1 class="loss">{{ picks.second.price }}</p1>
+                            {% endif %}
+                        
+                        </div>
+                    </div>
+                </div>
+              
+                    <!-- Third stock -->
+                <div id="stock3" class="wrapper">
+                    <div class="container">
+                        <div class="info">
+                            <h1>{{ picks.third.name }}</h1>
+                            {% if picks.third.gain %}
+                                <h2 class="gain">+{{ picks.third.change }}</h2>
+                            {% else %}
+                                <h2 class="loss">{{ picks.third.change }}</h2>
+                            {% endif %}
+                        </div>
+                        <div class="price">
+                            {% if picks.third.gain %}
+                                <p1 class="gain">{{ picks.third.price }}</p1>
+                            {% else %}
+                                <p1 class="loss">{{ picks.third.price }}</p1>
+                            {% endif %}
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="extra" class="wrapper">
+            <div id="content">
+                <h4>Looking for your next big investment? &#8211 <br>You're in the right place!</h4>
+                <p2>
+                These are my top three stock picks of the month! 
+                This page gives you real time data on my current, favorite three stocks. How is my portfolio lookin'?
+                Take my advice with a grain of salt, but hopefully, you too will be able to prosper!     
+                </p2>                     
+                <div style="margin-top: 15px">
+                    <p3> NOTE: Prices are based on market hours (Monday - Friday: 9:30AM - 4PM EST), if viewing outside market hours, the price will stay at its last close price <br><br>
+                        If you would like to implement something similar for your own projects, click <a href="https://rapidapi.com/apidojo/api/yahoo-finance1" target="_blank">here</a> 
+                        to learn about the Yahoo Finance API
+                    </p3>
+                            
+                </div>
+            </div>
+            
+        </div>
+        <script>
+            var months = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ];
+            // sets the month to current month
+            window.onload = function getCurrMonth() {
+                try {
+                var d = new Date();
+                var month = months[d.getMonth()];
+                document.getElementById("month").innerHTML = month;
+                fadeCards();
+                } catch(err) {
+                    document.getElementById("month").innerHTML = "Monthly";
+                }
+            }
+            // Fades in cards
+            function fadeCards() {
+            $(document).ready(function() {
+                $("#title").fadeIn(2500);
+                $("#stock1").delay(1000).fadeIn(1500);
+                $("#stock2").delay(1500).fadeIn(1500);
+                $("#stock3").delay(2000).fadeIn(1500);
+              
+       
+                $("#extra").delay(2500).fadeIn(1500);
+                $("#iconsDiv").delay(2500).fadeIn(1500);
+
+                console.log("fade caled");
+            });
+        }
+        </script>
+    {% endblock content %}
+{% endblock styles %}
+

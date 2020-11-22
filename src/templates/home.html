@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} ethan lim &#8211 the show {% endblock title %}</title> 
+    <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'logo.png' %}"/>
+    <script src="{{ FONTAWESOME_KEY }}" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+    <div id="navBar">
+        <a id="homeUrl" class="navBtn" href="{% url 'home' %}">ethan lim</a>
+        <a id="stockUrl" class="navBtn" href="{% url 'stocks' %}">ethan's top picks</a>
+    </div>
+    <body>
+        {% block content %}
+        <div id="contentDiv">
+            <div id="main">
+                <img src="{% static 'headshot.jpg' %}" alt="my headshot" id="headshot">
+                <h1>Ethan Lim</h1>
+                <h2>Undergraduate Student</h2>
+                <h2>Madison, WI</h2>
+                <p3>
+                    <ul>
+                       <li><i class="fab fa-java" style="color: dodgerblue"></i></li> 
+                       <li><i class="fab fa-cuttlefish" style="color: #88929C"></i></li> 
+                       <li><i class="fab fa-python" style="color: #FFD43B"></i></li> 
+                       <li><i class="fab fa-linux" style="color: white"></i></li>
+                       <li><i class="fab fa-git-alt" style="color: #FC6A03"></i></li>                       
+                    </ul>
+                </p3>
+            </div>
+            <div id="summary">
+                <h3>Hello there!</h3>
+                <p1> My name is Ethan Lim, and I'm a <p2>Junior</p2> at the University of Wisconsin - Madison studying
+                    Electrical Engineering and Computer Science. I currently work for <p2>Dr. Jiang's Laryngeal Physiology Lab</p2> where 
+                    I am working with the imaging team to develop a model to quantify vocal fold vibration. The only things I enjoy more
+                    than coding are: caffeine and Badger Football. If you'd like to learn more about me, 
+                    check out my <a id="resume" href="{% static 'Ethan Lim Resume.pdf' %}" target="_blank">resume!</a>
+                </p1>   
+            </div>        
+        </div>
+        {% endblock content %}
+        
+        <!-- The Modal -->
+        <div id="emailModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Success! Ethan's email was copied to your clipboard!</p>
+            </div>
+    
+        </div>
+        <div id="iconsDiv">
+            <i class="fas fa-envelope" onclick="copyEmail(myEmail)" id="iconMail"></i>
+            <a href="https://www.github.com/elim27" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ethan-lim" target="_blank"><i class="fab fa-linkedin" ></i></a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><i class="fab fa-youtube" ></i></a>           
+        </div>
+ 
+        <script>
+            var myEmail = "elim27@wisc.edu"
+            var modal = document.getElementById("emailModal");
+            var span = document.getElementsByClassName("close")[0];
+            // Resource on how to copy predetermined text to the clipboard (in this case myEmail)
+            //https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
+            function copyEmail(myEmail) {
+                var dummy = document.createElement("textarea");
+                document.body.appendChild(dummy);
+                dummy.value = myEmail;
+                dummy.select();
+                try {
+                document.execCommand("copy");
+                } catch (err) {
+                    Console.log("Error trying to copy to clipboard!");
+                    alert("Whoops! Looks like we're having trouble copying Ethan's email to your clipboard. We've contacted him about the issue, thank you for your patience!")
+                }
+                document.body.removeChild(dummy);
+                // displays modal
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+        </script>
+    </body>
+</html>
