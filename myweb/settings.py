@@ -27,7 +27,7 @@ ADMIN_ENABLED = config('ADMIN_KEY')
 #https://stackoverflow.com/questions/49166768/setting-secure-hsts-seconds-can-irreversibly-break-your-site
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True 
+# SECURE_SSL_REDIRECT = True 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)

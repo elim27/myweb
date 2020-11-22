@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.conf import settings
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('stocks/', include('stocks.urls'), name='stocks'),
-    path('admin/', admin.site.urls),
 ]
+
+if settings.ADMIN_ENABLED:
+    urlpatterns += path('admin/', admin.site.urls),
+  
