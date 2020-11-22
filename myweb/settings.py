@@ -32,7 +32,7 @@ SESSION_COOKIE_SECURE = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['myweb-django.herokuapp.com', 'ethan-lim.com', 'www.ethan-lim.com']
+ALLOWED_HOSTS = ['*']
 
 # RAPID_API
 # https://pypi.org/project/python-decouple/
